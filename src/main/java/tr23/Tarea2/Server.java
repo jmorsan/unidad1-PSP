@@ -1,4 +1,4 @@
-package tr23.Tarea1;
+package tr23.Tarea2;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -30,12 +30,46 @@ public class Server {
             dataOutputStream = new DataOutputStream(conexionCliente.getOutputStream());
             dataOutputStream.writeUTF("Hola cliente, Conexión recibida");
 
-            //Recibimos numero entero y calculamos el cuadrado
             flujoEntrada = new DataInputStream(conexionCliente.getInputStream());
-            double cuadrado = Math.pow(flujoEntrada.readInt(),2);
 
-            System.out.println(cuadrado);
-            dataOutputStream.writeDouble(cuadrado);
+            //Recibimos primer numero entero
+            double primerNum = flujoEntrada.readDouble();
+
+            //Recibimos primer numero entero
+            double segundoNum = flujoEntrada.readDouble();
+
+            //Recibimos primer numero entero
+            char simbolo = flujoEntrada.readUTF().charAt(0);
+
+            double resultado;
+
+
+
+            switch (simbolo)
+            {
+                case '+':
+
+                    resultado=primerNum+segundoNum;
+                    dataOutputStream.writeDouble(resultado);
+                    break;
+
+                case '-':
+                    resultado=primerNum-segundoNum;
+                    dataOutputStream.writeDouble(resultado);
+                    break;
+
+                case '*':
+                    resultado=primerNum*segundoNum;
+                    dataOutputStream.writeDouble(resultado);
+                    break;
+
+                case '/':
+                    resultado=primerNum/segundoNum;
+                    dataOutputStream.writeDouble(resultado);
+                    break;
+
+            }
+
 
 
 
@@ -50,7 +84,6 @@ public class Server {
         }
         finally
         {
-
             if (dataOutputStream != null)
             {
                 try

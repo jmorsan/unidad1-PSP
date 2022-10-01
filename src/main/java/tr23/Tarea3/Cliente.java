@@ -1,4 +1,4 @@
-package tr23.Tarea1;
+package tr23.Tarea3;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -27,10 +27,14 @@ public class Cliente {
             sc = new Scanner(System.in);
             System.out.println(flujoEntrada.readUTF()) ;
 
-            System.out.println("Introduzca un numero:");
-            dataOutputStream.writeInt(sc.nextInt());
+            System.out.println("Introduzca primera fecha(dd-MM-yyyy):");
+            dataOutputStream.writeUTF(sc.nextLine());
 
-            System.out.println(flujoEntrada.readDouble()) ;
+            System.out.println("Introduzca segunda fecha(dd-MM-yyyy):");
+
+            dataOutputStream.writeUTF(sc.nextLine());
+
+            System.out.println("La fecha mas antigua es ==> " + flujoEntrada.readUTF()) ;
         }
         catch(InputMismatchException e)
         {

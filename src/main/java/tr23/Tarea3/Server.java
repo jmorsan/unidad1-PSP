@@ -1,10 +1,13 @@
-package tr23.Tarea1;
+package tr23.Tarea3;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Server {
 
@@ -30,12 +33,37 @@ public class Server {
             dataOutputStream = new DataOutputStream(conexionCliente.getOutputStream());
             dataOutputStream.writeUTF("Hola cliente, Conexión recibida");
 
-            //Recibimos numero entero y calculamos el cuadrado
+            //Recibimos fechas
             flujoEntrada = new DataInputStream(conexionCliente.getInputStream());
-            double cuadrado = Math.pow(flujoEntrada.readInt(),2);
 
-            System.out.println(cuadrado);
-            dataOutputStream.writeDouble(cuadrado);
+
+            String fecha1 = flujoEntrada.readUTF();
+
+            String fecha2 = flujoEntrada.readUTF();
+
+            SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+
+
+            Date date1 = f.parse(fecha1);
+            Date date2 = f.parse(fecha2);
+
+            long fecha1MilSeg = date1.getTime();
+            long fecha2MilSeg = date2.getTime();
+
+            System.out.println("Milisegundos fecha 1 :" + fecha1MilSeg);
+            System.out.println("Milisegundos fecha 2 :" + fecha2MilSeg);
+
+
+            if(fecha1MilSeg>fecha2MilSeg){
+
+                dataOutputStream.writeUTF(fecha2);
+
+            }else{
+
+                dataOutputStream.writeUTF(fecha1);
+            }
+
+
 
 
 
@@ -46,6 +74,10 @@ public class Server {
         }
         catch(IOException e)
         {
+            e.printStackTrace();
+        }
+        catch (ParseException e) {
+
             e.printStackTrace();
         }
         finally

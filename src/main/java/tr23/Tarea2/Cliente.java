@@ -1,11 +1,10 @@
-package tr23.Tarea1;
+package tr23.Tarea2;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Cliente {
@@ -27,14 +26,29 @@ public class Cliente {
             sc = new Scanner(System.in);
             System.out.println(flujoEntrada.readUTF()) ;
 
-            System.out.println("Introduzca un numero:");
-            dataOutputStream.writeInt(sc.nextInt());
+            System.out.println("Introduzca un primer numero:");
+            dataOutputStream.writeDouble(sc.nextDouble());
 
-            System.out.println(flujoEntrada.readDouble()) ;
-        }
-        catch(InputMismatchException e)
-        {
-            e.printStackTrace();
+            System.out.println("Introduzca un segundo numero:");
+            dataOutputStream.writeDouble(sc.nextDouble());
+
+            sc.nextLine();
+
+            System.out.println("Introduzca tipo de opercion");
+            String simbolo =sc.nextLine();
+
+            if(simbolo.charAt(0) != '+' && simbolo.charAt(0) != '-' && simbolo.charAt(0) != '*' && simbolo.charAt(0) != '/' )
+            {
+                System.out.println("Operacion no soportada");
+            }
+            else
+            {
+                dataOutputStream.writeUTF(simbolo);
+                System.out.println(flujoEntrada.readDouble()) ;
+            }
+
+
+
 
         }
         catch(UnknownHostException e)
@@ -47,28 +61,6 @@ public class Cliente {
         }
         finally
         {
-            if (sc != null)
-            {
-                try
-                {
-                    sc.close();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-            if (dataOutputStream != null)
-            {
-                try
-                {
-                    dataOutputStream.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
             if (flujoEntrada != null)
             {
                 try
