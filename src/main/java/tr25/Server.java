@@ -1,4 +1,4 @@
-package tr23.Tarea3;
+package tr25;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -9,11 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Server {
-
+public class Server
+{
     public static final int PORT = 8080;
-
-
 
     public static void main(String[] args)
     {
@@ -53,20 +51,6 @@ public class Server {
             System.out.println("Milisegundos fecha 1 :" + fecha1MilSeg);
             System.out.println("Milisegundos fecha 2 :" + fecha2MilSeg);
 
-            /**
-             * Forma mas optima-> Comparar dates metodos .isBefore/.isAfter
-             *
-
-            if(date1.before(date2))
-            {
-                dataOutputStream.writeUTF(date1.getTime());
-            }
-            else
-            {
-                dataOutputStream.writeUTF(date2.getTime());
-            }
-             **/
-
 
             if(fecha1MilSeg>fecha2MilSeg){
 
@@ -76,14 +60,23 @@ public class Server {
 
                 dataOutputStream.writeUTF(fecha1);
             }
-        }
-        catch(IOException ioException)
-        {
-            ioException.printStackTrace();
-        }
-        catch (ParseException parseException) {
 
-            parseException.printStackTrace();
+
+
+
+
+            dataOutputStream.close();
+            conexionCliente.close();
+            socketServidor.close();
+
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ParseException e) {
+
+            e.printStackTrace();
         }
         finally
         {
@@ -94,9 +87,9 @@ public class Server {
                 {
                     dataOutputStream.close();
                 }
-                catch (IOException ioException)
+                catch (IOException e)
                 {
-                    ioException.printStackTrace();
+                    e.printStackTrace();
                 }
             }
 
@@ -106,9 +99,9 @@ public class Server {
                 {
                     conexionCliente.close();
                 }
-                catch (IOException ioException)
+                catch (IOException e)
                 {
-                    ioException.printStackTrace();
+                    e.printStackTrace();
                 }
             }
 
@@ -118,11 +111,12 @@ public class Server {
                 {
                     socketServidor.close();
                 }
-                catch (IOException ioException)
+                catch (IOException e)
                 {
-                    ioException.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }
     }
+
 }

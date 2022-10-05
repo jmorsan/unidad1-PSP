@@ -47,29 +47,28 @@ public class Cliente {
                 System.out.println(flujoEntrada.readDouble()) ;
             }
 
-
-
-
         }
-        catch(UnknownHostException e)
+        catch(UnknownHostException unknownHostException)
         {
-            e.printStackTrace();
+            unknownHostException.printStackTrace();
         }
-        catch (IOException e)
+        catch (IOException ioException)
         {
-            e.printStackTrace();
+            ioException.printStackTrace();
         }
         finally
         {
+            sc.close();
+
             if (flujoEntrada != null)
             {
                 try
                 {
                     flujoEntrada.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 
@@ -79,9 +78,9 @@ public class Cliente {
                 {
                     conexionServidor.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
         }

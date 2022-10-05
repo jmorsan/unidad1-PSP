@@ -1,4 +1,4 @@
-package tr23.Tarea3;
+package tr25;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -8,8 +8,8 @@ import java.net.UnknownHostException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Cliente {
-
+public class Cliente
+{
     private static  final String HOST = "localhost";
 
     public static void main(String[] args)
@@ -36,33 +36,41 @@ public class Cliente {
 
             System.out.println("La fecha mas antigua es ==> " + flujoEntrada.readUTF()) ;
         }
-        catch(InputMismatchException inputMismatchException)
+        catch(InputMismatchException e)
         {
-            inputMismatchException.printStackTrace();
+            e.printStackTrace();
 
         }
-        catch(UnknownHostException unknownHostException)
+        catch(UnknownHostException e)
         {
-            unknownHostException.printStackTrace();
+            e.printStackTrace();
         }
-        catch (IOException ioException)
+        catch (IOException e)
         {
-            ioException.printStackTrace();
+            e.printStackTrace();
         }
         finally
         {
-
-            sc.close();
-
+            if (sc != null)
+            {
+                try
+                {
+                    sc.close();
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
             if (dataOutputStream != null)
             {
                 try
                 {
                     dataOutputStream.close();
                 }
-                catch (IOException ioException)
+                catch (IOException e)
                 {
-                    ioException.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             if (flujoEntrada != null)
@@ -71,9 +79,9 @@ public class Cliente {
                 {
                     flujoEntrada.close();
                 }
-                catch (IOException ioException)
+                catch (IOException e)
                 {
-                    ioException.printStackTrace();
+                    e.printStackTrace();
                 }
             }
 
@@ -83,9 +91,9 @@ public class Cliente {
                 {
                     conexionServidor.close();
                 }
-                catch (IOException ioException)
+                catch (IOException e)
                 {
-                    ioException.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }

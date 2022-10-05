@@ -32,41 +32,32 @@ public class Cliente {
 
             System.out.println(flujoEntrada.readDouble()) ;
         }
-        catch(InputMismatchException e)
+        catch(InputMismatchException inputMismatchException)
         {
-            e.printStackTrace();
+            inputMismatchException.printStackTrace();
 
         }
-        catch(UnknownHostException e)
+        catch(UnknownHostException unknownHostException)
         {
-            e.printStackTrace();
+            unknownHostException.printStackTrace();
         }
-        catch (IOException e)
+        catch (IOException ioException)
         {
-            e.printStackTrace();
+            ioException.printStackTrace();
         }
         finally
         {
-            if (sc != null)
-            {
-                try
-                {
-                    sc.close();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
+            sc.close();
+
             if (dataOutputStream != null)
             {
                 try
                 {
                     dataOutputStream.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
             if (flujoEntrada != null)
@@ -75,9 +66,9 @@ public class Cliente {
                 {
                     flujoEntrada.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 

@@ -68,19 +68,15 @@ public class Server {
                     dataOutputStream.writeDouble(resultado);
                     break;
 
+                default:
+                    System.out.println("Error");
+
             }
 
-
-
-
-            dataOutputStream.close();
-            conexionCliente.close();
-            socketServidor.close();
-
         }
-        catch(IOException e)
+        catch(IOException ioException)
         {
-            e.printStackTrace();
+            ioException.printStackTrace();
         }
         finally
         {
@@ -90,9 +86,9 @@ public class Server {
                 {
                     dataOutputStream.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 
@@ -102,9 +98,9 @@ public class Server {
                 {
                     conexionCliente.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 
@@ -114,9 +110,9 @@ public class Server {
                 {
                     socketServidor.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
         }
