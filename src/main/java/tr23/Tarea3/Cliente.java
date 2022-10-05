@@ -34,7 +34,7 @@ public class Cliente {
 
             dataOutputStream.writeUTF(sc.nextLine());
 
-            System.out.println("La fecha mas antigua es ==> " + flujoEntrada.readUTF()) ;
+            System.out.println("\nLa fecha mas antigua es ==> " + flujoEntrada.readUTF()) ;
         }
         catch(InputMismatchException inputMismatchException)
         {

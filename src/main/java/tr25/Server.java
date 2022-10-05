@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Server
@@ -34,8 +35,36 @@ public class Server
             //Recibimos fechas
             flujoEntrada = new DataInputStream(conexionCliente.getInputStream());
 
+            int cont=0;
+            ArrayList<String> listaPalabras = new ArrayList<>();
+            String palabra="";
 
-            String fecha1 = flujoEntrada.readUTF();
+            while(flujoEntrada.readUTF()!="fin")
+            {
+                cont++;
+
+                palabra = flujoEntrada.readUTF();
+
+                dataOutputStream.writeUTF("Recibido");
+
+                listaPalabras.add(cont,palabra);
+
+            }
+
+
+            for (int i = 0; i < listaPalabras.size() ; i++)
+            {
+                String palabraCifrada =" ";
+                palabra = listaPalabras.get(i);
+
+                for (int j = 0; j < palabra.length(); j++)
+                {
+                    palabraCifrada+=palabra.charAt(j+1);
+                }
+
+                listaPalabras.add(i,palabraCifrada);
+            }
+
 
             String fecha2 = flujoEntrada.readUTF();
 
@@ -58,7 +87,7 @@ public class Server
 
             }else{
 
-                dataOutputStream.writeUTF(fecha1);
+                //dataOutputStream.writeUTF(fecha1);
             }
 
 

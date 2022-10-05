@@ -27,12 +27,17 @@ public class Cliente
             sc = new Scanner(System.in);
             System.out.println(flujoEntrada.readUTF()) ;
 
-            System.out.println("Introduzca primera fecha(dd-MM-yyyy):");
-            dataOutputStream.writeUTF(sc.nextLine());
+            String palabra ="";
 
-            System.out.println("Introduzca segunda fecha(dd-MM-yyyy):");
+            while(palabra!="fin"){
+                System.out.println("Introduzca palabra:");
+                palabra = sc.nextLine();
+                dataOutputStream.writeUTF(palabra);
 
-            dataOutputStream.writeUTF(sc.nextLine());
+            }
+
+
+
 
             System.out.println("La fecha mas antigua es ==> " + flujoEntrada.readUTF()) ;
         }
