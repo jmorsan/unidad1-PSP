@@ -39,15 +39,16 @@ public class Server
             ArrayList<String> listaPalabras = new ArrayList<>();
             String palabra="";
 
-            while(flujoEntrada.readUTF()!="fin")
+            while(!palabra.equals("fin"))
             {
-                cont++;
 
                 palabra = flujoEntrada.readUTF();
 
-                dataOutputStream.writeUTF("Recibido");
-
                 listaPalabras.add(cont,palabra);
+
+                cont++;
+
+                dataOutputStream.writeUTF("Recibido");
 
             }
 
@@ -59,52 +60,26 @@ public class Server
 
                 for (int j = 0; j < palabra.length(); j++)
                 {
-                    palabraCifrada+=palabra.charAt(j+1);
+                    palabraCifrada+=(char)palabra.charAt(j);
+
                 }
 
                 listaPalabras.add(i,palabraCifrada);
             }
 
 
-            String fecha2 = flujoEntrada.readUTF();
-
-            SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
-
-
-            Date date1 = f.parse(fecha1);
-            Date date2 = f.parse(fecha2);
-
-            long fecha1MilSeg = date1.getTime();
-            long fecha2MilSeg = date2.getTime();
-
-            System.out.println("Milisegundos fecha 1 :" + fecha1MilSeg);
-            System.out.println("Milisegundos fecha 2 :" + fecha2MilSeg);
-
-
-            if(fecha1MilSeg>fecha2MilSeg){
-
-                dataOutputStream.writeUTF(fecha2);
-
-            }else{
-
-                //dataOutputStream.writeUTF(fecha1);
+            for (int i = 0; i < listaPalabras.size() ; i++)
+            {
+                dataOutputStream.writeUTF(listaPalabras.get(i));
             }
 
+            dataOutputStream.writeUTF("fin");
 
 
-
-
-            dataOutputStream.close();
-            conexionCliente.close();
-            socketServidor.close();
 
         }
         catch(IOException e)
         {
-            e.printStackTrace();
-        }
-        catch (ParseException e) {
-
             e.printStackTrace();
         }
         finally

@@ -29,17 +29,28 @@ public class Cliente
 
             String palabra ="";
 
-            while(palabra!="fin"){
+            while(!palabra.equals("fin"))
+            {
+
                 System.out.println("Introduzca palabra:");
+
                 palabra = sc.nextLine();
+
                 dataOutputStream.writeUTF(palabra);
+
+                System.out.println(flujoEntrada.readUTF());
 
             }
 
+            do
+            {
+                System.out.println(flujoEntrada.readUTF());
+
+            }
+            while(!palabra.equals("fin"));
 
 
 
-            System.out.println("La fecha mas antigua es ==> " + flujoEntrada.readUTF()) ;
         }
         catch(InputMismatchException e)
         {
