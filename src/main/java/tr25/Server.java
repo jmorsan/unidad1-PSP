@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Server
 {
@@ -35,8 +36,8 @@ public class Server
             //Recibimos fechas
             flujoEntrada = new DataInputStream(conexionCliente.getInputStream());
 
-            int cont=0;
-            ArrayList<String> listaPalabras = new ArrayList<>();
+
+            List<String> listaPalabras = new ArrayList<>();
             String palabra="";
 
             while(!palabra.equals("fin"))
@@ -44,9 +45,10 @@ public class Server
 
                 palabra = flujoEntrada.readUTF();
 
-                listaPalabras.add(cont,palabra);
-
-                cont++;
+                if(!palabra.equals("fin"))
+                {
+                    listaPalabras.add(palabra);
+                }
 
                 dataOutputStream.writeUTF("Recibido");
 
@@ -60,11 +62,12 @@ public class Server
 
                 for (int j = 0; j < palabra.length(); j++)
                 {
-                    palabraCifrada+=(char)palabra.charAt(j);
+
+                    palabraCifrada += String.valueOf ( (char) (palabra.charAt(j)+1));
 
                 }
 
-                listaPalabras.add(i,palabraCifrada);
+                listaPalabras.set(i,palabraCifrada);
             }
 
 

@@ -1,4 +1,4 @@
-package tr25;
+package tr26;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+
 
 public class Cliente
 {
@@ -27,34 +29,22 @@ public class Cliente
             sc = new Scanner(System.in);
             System.out.println(flujoEntrada.readUTF()) ;
 
-            String palabra ="";
+            int numero =-1;
 
-            while(!palabra.equals("fin"))
+            while(numero != 0)
             {
 
-                System.out.println("Introduzca palabra:");
+                System.out.println("Introduzca numero:");
 
-                palabra = sc.nextLine();
+                numero = Integer.parseInt(sc.nextLine());
 
-                dataOutputStream.writeUTF(palabra);
+                dataOutputStream.writeInt(numero);
 
                 System.out.println(flujoEntrada.readUTF());
 
             }
 
-            do
-            {
-                palabra=flujoEntrada.readUTF();
-
-                if(!palabra.equals("fin"))
-                {
-                    System.out.println(palabra);
-                }
-
-            }
-            while(!palabra.equals("fin"));
-
-
+            System.out.println(flujoEntrada.readUTF());
 
         }
         catch(InputMismatchException e)
@@ -121,3 +111,4 @@ public class Cliente
 
     }
 }
+
