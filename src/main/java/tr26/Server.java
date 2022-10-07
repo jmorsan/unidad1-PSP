@@ -30,7 +30,7 @@ public class Server
             dataOutputStream = new DataOutputStream(conexionCliente.getOutputStream());
             dataOutputStream.writeUTF("Hola cliente, Conexión recibida");
 
-            //Recibimos fechas
+            //Recibimos numeros
             flujoEntrada = new DataInputStream(conexionCliente.getInputStream());
 
 
@@ -57,11 +57,6 @@ public class Server
                     +" ,Menor: "+String.valueOf(calcularMenor(listaNumeros));
 
             dataOutputStream.writeUTF(resultado);
-
-
-
-
-
 
         }
         catch(IOException e)

@@ -33,7 +33,7 @@ public class Server
             dataOutputStream = new DataOutputStream(conexionCliente.getOutputStream());
             dataOutputStream.writeUTF("Hola cliente, Conexión recibida");
 
-            //Recibimos fechas
+            //Recibimos palabras
             flujoEntrada = new DataInputStream(conexionCliente.getInputStream());
 
 
@@ -77,8 +77,6 @@ public class Server
             }
 
             dataOutputStream.writeUTF("fin");
-
-
 
         }
         catch(IOException e)

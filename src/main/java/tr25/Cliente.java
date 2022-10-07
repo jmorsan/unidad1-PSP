@@ -54,8 +54,6 @@ public class Cliente
             }
             while(!palabra.equals("fin"));
 
-
-
         }
         catch(InputMismatchException e)
         {
