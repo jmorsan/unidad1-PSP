@@ -47,41 +47,26 @@ public class Cliente
             System.out.println(flujoEntrada.readUTF());
 
         }
-        catch(InputMismatchException e)
+        catch(InputMismatchException | IOException exception)
         {
-            e.printStackTrace();
+            exception.printStackTrace();
 
-        }
-        catch(UnknownHostException e)
-        {
-            e.printStackTrace();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
         }
         finally
         {
-            if (sc != null)
-            {
-                try
-                {
-                    sc.close();
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
+
+            sc.close();
+
+
             if (dataOutputStream != null)
             {
                 try
                 {
                     dataOutputStream.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
             if (flujoEntrada != null)
@@ -90,9 +75,9 @@ public class Cliente
                 {
                     flujoEntrada.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 
@@ -102,9 +87,9 @@ public class Cliente
                 {
                     conexionServidor.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
         }

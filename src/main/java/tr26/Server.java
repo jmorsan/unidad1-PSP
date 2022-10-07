@@ -59,9 +59,9 @@ public class Server
             dataOutputStream.writeUTF(resultado);
 
         }
-        catch(IOException e)
+        catch(IOException ioException)
         {
-            e.printStackTrace();
+            ioException.printStackTrace();
         }
         finally
         {
@@ -72,9 +72,9 @@ public class Server
                 {
                     dataOutputStream.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 
@@ -84,9 +84,9 @@ public class Server
                 {
                     conexionCliente.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
 
@@ -96,9 +96,9 @@ public class Server
                 {
                     socketServidor.close();
                 }
-                catch (IOException e)
+                catch (IOException ioException)
                 {
-                    e.printStackTrace();
+                    ioException.printStackTrace();
                 }
             }
         }
