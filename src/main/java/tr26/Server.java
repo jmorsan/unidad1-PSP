@@ -51,10 +51,10 @@ public class Server
 
             }
 
-            String resultado = "Media: "+String.valueOf(calcularMedia(listaNumeros))
-                    +" ,Moda: "+String.valueOf(calcularModa(listaNumeros))
-                    +" ,Mayor: "+String.valueOf(calcularMayor(listaNumeros))
-                    +" ,Menor: "+String.valueOf(calcularMenor(listaNumeros));
+            String resultado = "Media: "+calcularMedia(listaNumeros)
+                    +" ,Moda: "+calcularModa(listaNumeros)
+                    +" ,Mayor: "+calcularMayor(listaNumeros)
+                    +" ,Menor: "+calcularMenor(listaNumeros);
 
             dataOutputStream.writeUTF(resultado);
 
